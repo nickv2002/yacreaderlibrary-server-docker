@@ -11,6 +11,7 @@ RUN \
  echo "**** install runtime packages ****" && \
  apt-get update && \
  apt-get install -y \
+ 	curl \
         git \
         qt5-default \
         libpoppler-qt5-dev \
