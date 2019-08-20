@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM debian:stretch as builder
 
 # set labels
 ARG YACR_COMMIT
@@ -49,6 +49,8 @@ RUN \
  rm -rf \
         /src \
         /var/cache/apt
+
+FROM alpine:latest
 
 COPY --from=builder /usr/bin/YACReaderLibraryServer .
 
