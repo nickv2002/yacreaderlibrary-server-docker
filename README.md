@@ -1,3 +1,5 @@
+Fork of Muallin's YACReaderLibraryServer Docker to download the 'develop' branch of YACReader. 
+
 HOW TO
 ===
 ```
