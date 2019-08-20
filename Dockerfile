@@ -1,17 +1,16 @@
 FROM alpine:latest
 
 # set labels
-LABEL maintainer="xthursdayx"
 ARG YACR_COMMIT
+LABEL maintainer="xthursdayx"
 
 WORKDIR /src
 WORKDIR git
 
-# Update system
 RUN \
- echo "**** Installing dep packages ****" && \
+ echo "**** install runtime packages ****" && \
  apt-get update && \
- apt-get -y install \
+ apt-get install -y \
         git \
         qt5-default \
         libpoppler-qt5-dev \
@@ -25,7 +24,7 @@ RUN \
         libqt5gui5 \
         libqt5core5a \
         build-essential && \	
- echo "**** Installing app ****" && \
+ echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
 	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
 	| awk '/sha/{print $4;exit}' FS='[""]'); \
@@ -44,12 +43,13 @@ RUN \
  make install && \
  cd / && \
  echo "**** cleanup ****" && \
- rm -rf \
-        /src \
-        /var/cache/apt && \
+ apt-get clean && \
  apt-get purge -y git wget build-essential && \
  apt-get -y autoremove
- 
+ rm -rf \
+        /src \
+        /var/cache/apt
+
 COPY --from=builder /usr/bin/YACReaderLibraryServer .
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
