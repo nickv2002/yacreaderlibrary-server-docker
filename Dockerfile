@@ -1,14 +1,11 @@
 FROM debian:stretch as builder
 
-# set labels
-ARG YACR_COMMIT
 LABEL maintainer="xthursdayx"
 
 WORKDIR /src
 WORKDIR git
 
 RUN \
- echo "**** install runtime packages ****" && \
  apt-get update && \
  apt-get install -y \
 	curl \
@@ -26,13 +23,8 @@ RUN \
         libqt5core5a \
         build-essential
 RUN \
- echo "**** install YACReader ****" && \
- if [ -z ${YACR_COMMIT+x} ]; then \
-	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
-	| awk '/sha/{print $4;exit}' FS='[""]'); \
- fi && \
- git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
- git checkout ${YACR_COMMIT}
+ git clone https://github.com/YACReader/yacreader.git . && \
+ git checkout develop
 RUN \
  cd compressed_archive/unarr/ && \
  wget github.com/selmf/unarr/archive/master.zip && \
