@@ -11,7 +11,8 @@ RUN \
  echo "**** install runtime packages ****" && \
  apt-get update && \
  apt-get install -y \
- 	curl \
+ 	checkinstall \
+	curl \
         git \
         qt5-default \
         libpoppler-qt5-dev \
@@ -41,7 +42,8 @@ RUN \
  cd /src/git/YACReaderLibraryServer && \
  qmake YACReaderLibraryServer.pro && \
  make  && \
- make install && \
+ checkinstall -D make install && \
+ # make install && \
  cd / && \
  echo "**** cleanup ****" && \
  apt-get clean && \
