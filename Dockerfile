@@ -24,32 +24,27 @@ RUN \
         libqt5network5 \
         libqt5gui5 \
         libqt5core5a \
-        build-essential && \	
+        build-essential
+RUN \
  echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
 	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
 	| awk '/sha/{print $4;exit}' FS='[""]'); \
  fi && \
  git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
- git checkout ${YACR_COMMIT} && \
+ git checkout ${YACR_COMMIT}
+RUN \
  cd compressed_archive/unarr/ && \
  wget github.com/selmf/unarr/archive/master.zip && \
  unzip master.zip  && \
  rm master.zip && \
  cd unarr-master/lzmasdk && \
- ln -s 7zTypes.h Types.h && \
+ ln -s 7zTypes.h Types.h
+RUN \
  cd /src/git/YACReaderLibraryServer && \
  qmake YACReaderLibraryServer.pro && \
  make  && \
- make install && \
- cd / && \
- echo "**** cleanup ****" && \
- apt-get clean && \
- apt-get purge -y git wget build-essential && \
- apt-get -y autoremove && \
- rm -rf \
-        /src \
-        /var/cache/apt
+ make install
 
 FROM alpine:latest
 
