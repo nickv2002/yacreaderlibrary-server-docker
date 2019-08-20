@@ -11,7 +11,6 @@ RUN \
  echo "**** install runtime packages ****" && \
  apt-get update && \
  apt-get install -y \
- 	checkinstall \
 	curl \
         git \
         qt5-default \
@@ -42,8 +41,7 @@ RUN \
  cd /src/git/YACReaderLibraryServer && \
  qmake YACReaderLibraryServer.pro && \
  make  && \
- checkinstall -D make install && \
- # make install && \
+ make install && \
  cd / && \
  echo "**** cleanup ****" && \
  apt-get clean && \
