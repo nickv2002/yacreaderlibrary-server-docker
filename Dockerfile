@@ -45,7 +45,7 @@ RUN \
  echo "**** cleanup ****" && \
  apt-get clean && \
  apt-get purge -y git wget build-essential && \
- apt-get -y autoremove
+ apt-get -y autoremove && \
  rm -rf \
         /src \
         /var/cache/apt
