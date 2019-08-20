@@ -1,7 +1,7 @@
-FROM debian:stretch
+FROM alpine:latest
 
 # set labels
-LABEL maintainer="xthrusdayx"
+LABEL maintainer="xthursdayx"
 ARG YACR_COMMIT
 
 WORKDIR /src
@@ -24,7 +24,7 @@ RUN \
         libqt5network5 \
         libqt5gui5 \
         libqt5core5a \
-        build-essential && \
+        build-essential && \	
  echo "**** Installing app ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
 	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
@@ -49,6 +49,8 @@ RUN \
         /var/cache/apt && \
  apt-get purge -y git wget build-essential && \
  apt-get -y autoremove
+ 
+COPY --from=builder /usr/bin/YACReaderLibraryServer .
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
