@@ -1,6 +1,5 @@
 FROM debian:stretch
 
-# set labels
 ARG YACR_COMMIT
 LABEL maintainer="xthursdayx"
 
