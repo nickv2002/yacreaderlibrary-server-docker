@@ -3,8 +3,7 @@ FROM debian:buster
 ARG YACR_COMMIT
 LABEL maintainer="xthursdayx"
 
-WORKDIR /src
-WORKDIR git
+WORKDIR /src/git
 
 RUN \
  echo "**** install runtime packages ****" && \
@@ -47,7 +46,7 @@ RUN \
  ln -s 7zTypes.h Types.h
 RUN \
  cd /src/git/YACReaderLibraryServer && \
- qmake-qt5 CONFIG+=server_standalone YACReaderLibraryServer.pro && \
+ qmake YACReaderLibraryServer.pro && \
  make  && \
  make install
 RUN \
