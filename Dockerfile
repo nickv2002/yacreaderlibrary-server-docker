@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 ARG YACR_COMMIT
 LABEL maintainer="xthursdayx"
