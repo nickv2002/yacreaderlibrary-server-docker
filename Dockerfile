@@ -15,14 +15,20 @@ RUN \
     qt5-default \
     libpoppler-qt5-dev \
     libpoppler-qt5-1 \
-    wget \
-    unzip \
+    libqt5core5a \
+    libqt5gui5 \       
+    libqt5multimedia5 \
+    libqt5opengl5 \
+    libqt5network5 \
+    libqt5quickcontrols2-5 \
+    libqt5script5 \
     libqt5sql5-sqlite \
     libqt5sql5 \
+    qt5-image-formats-plugins \
+    qtdeclarative5-dev \
     sqlite3 \
-    libqt5network5 \
-    libqt5gui5 \
-    libqt5core5a \
+    unzip \
+    wget \   
     build-essential	
 RUN \
  echo "**** install YACReader ****" && \
@@ -34,7 +40,7 @@ RUN \
  git checkout ${YACR_COMMIT}
 RUN \
  cd compressed_archive/unarr/ && \
- wget github.com/selmf/unarr/archive/master.zip && \
+ wget https://github.com/selmf/unarr/archive/master.zip && \
  unzip master.zip  && \
  rm master.zip && \
  cd unarr-master/lzmasdk && \
