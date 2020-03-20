@@ -1,4 +1,4 @@
-Fork of muallin's YACReaderLibraryServer Docker to download the 'develop' branch of YACReader. 
+Fork of muallin's YACReaderLibraryServer Docker with updated YACReader and base image. 
 
 HOW TO
 ===
