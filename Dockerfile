@@ -1,6 +1,6 @@
 FROM debian:buster
 
-#ARG YACR_COMMIT
+ARG YACR_COMMIT
 LABEL maintainer="xthursdayx"
 
 WORKDIR /src/git
@@ -31,12 +31,12 @@ RUN \
     build-essential	
 RUN \
  echo "**** install YACReader ****" && \
-# if [ -z ${YACR_COMMIT+x} ]; then \
-#	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
-#	| awk '/sha/{print $4;exit}' FS='[""]'); \
-# fi && \
+ if [ -z ${YACR_COMMIT+x} ]; then \
+	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/master \
+	| awk '/sha/{print $4;exit}' FS='[""]'); \
+ fi && \
  git clone -b master --single-branch https://github.com/YACReader/yacreader.git . && \
- git checkout master
+ git checkout ${YACR_COMMIT}
 RUN \
  cd compressed_archive/unarr/ && \
  wget https://github.com/selmf/unarr/archive/master.zip && \
