@@ -47,7 +47,7 @@ RUN \
  ln -s 7zTypes.h Types.h
 RUN \
  cd /src/git/YACReaderLibraryServer && \
- qmake YACReaderLibraryServer.pro && \
+ qmake-qt5 CONFIG+=server_standalone YACReaderLibraryServer.pro && \
  make  && \
  make install
 RUN \
