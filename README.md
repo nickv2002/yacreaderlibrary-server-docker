@@ -6,7 +6,7 @@ Fork of [muallin's YACReaderLibraryServer Docker](https://hub.docker.com/r/muall
 
 # YACReaderLibrary Server Docker
 
-Headless version of the YACReaderLibraryServer. YACReader is the best comic reader and comic manager with support for cbr cbz zip rar comic files.
+Headless version of the [YACReaderLibraryServer](https://github.com/YACReader/yacreader/tree/develop/YACReaderLibraryServer). [YACReader](https://www.yacreader.com/) is the best comic reader and comic manager with support for cbr, cbz, zip, and rar comic files.
 
 ### Install:
 
@@ -24,7 +24,7 @@ docker run -d \
 ### Setup Instructions:
 
 - Replace "/path/to/comics" with the local location of your comcis folder.
-- Replace <port> with your choice of ports.
+- Replace "<port>" with your choice of ports.
 
 #### Create new YACReader library
 ````
@@ -45,4 +45,4 @@ docker exec yacserver YACReaderLibraryServer list-libraries
 #### Remove YACReader library
 ````
 docker exec yacserver YACReaderLibraryServer remove-library <library-name>
-```
+````
