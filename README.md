@@ -32,7 +32,7 @@ docker exec yacserver YACReaderLibraryServer create-library <library-name> /comi
 ````
 #### Add existing YACReader library
 ````
-docker exec yacserver YACReaderLibraryServer create-library <library-name> /comics
+docker exec yacserver YACReaderLibraryServer add-library <library-name> /comics
 ````
 #### Update YACReader library (e.g. when you've added new comics)
 ````
